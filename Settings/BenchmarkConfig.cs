@@ -1,9 +1,9 @@
-using BenchmarkDotNet.Configs;
+﻿using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 
-namespace StrategyPattern;
+namespace Settings;
 
 public class BenchmarkConfig : ManualConfig
 {

@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Microsoft.Extensions.DependencyInjection;
+using Settings;
 using StrategyPattern.NonStrategy;
 using StrategyPattern.Strategy;
 

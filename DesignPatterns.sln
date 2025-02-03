@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingletonPattern", "Singlet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Settings", "Settings\Settings.csproj", "{C961DBD9-74CA-4EC2-B4C3-C29205CCCFEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandPattern", "CommandPattern\CommandPattern.csproj", "{C1A3840E-65F5-4634-B0C5-4BBAF5635CDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{C961DBD9-74CA-4EC2-B4C3-C29205CCCFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C961DBD9-74CA-4EC2-B4C3-C29205CCCFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C961DBD9-74CA-4EC2-B4C3-C29205CCCFEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1A3840E-65F5-4634-B0C5-4BBAF5635CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1A3840E-65F5-4634-B0C5-4BBAF5635CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1A3840E-65F5-4634-B0C5-4BBAF5635CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1A3840E-65F5-4634-B0C5-4BBAF5635CDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

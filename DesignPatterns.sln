@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgePattern", "BridgePatt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullObjectPattern", "NullObjectPattern\NullObjectPattern.csproj", "{8B59A345-0E83-4546-A90E-164828EBA5B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecificationPattern", "SpecificationPattern\SpecificationPattern.csproj", "{17D5F229-AEA5-403B-956C-0C20CDE72E35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{8B59A345-0E83-4546-A90E-164828EBA5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B59A345-0E83-4546-A90E-164828EBA5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B59A345-0E83-4546-A90E-164828EBA5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17D5F229-AEA5-403B-956C-0C20CDE72E35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17D5F229-AEA5-403B-956C-0C20CDE72E35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17D5F229-AEA5-403B-956C-0C20CDE72E35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17D5F229-AEA5-403B-956C-0C20CDE72E35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -15,6 +15,8 @@ public sealed class NonNullObjectUserRepository
 
     public User? GetUserById(Guid id)
     {
-        return _users.FirstOrDefault(u => u.Id == id);
+        var user = _users.FirstOrDefault(u => u.Id == id);
+        
+        return user ?? null;
     }
 }

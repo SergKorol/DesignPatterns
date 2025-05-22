@@ -17,11 +17,11 @@ public class LazyArtist : Artist
         _isLoaded = false;
     }
 
-    public new Task<List<Album>> Albums => GetAlbumsAsync();
+    public new Task<List<Album>?> Albums => GetAlbumsAsync();
 
-    private async Task<List<Album>> GetAlbumsAsync()
+    private async Task<List<Album>?> GetAlbumsAsync()
     {
-        if (_isLoaded) return _albums!;
+        if (_isLoaded) return _albums;
 
         await _semaphore.WaitAsync();
         try
@@ -37,6 +37,6 @@ public class LazyArtist : Artist
             _semaphore.Release();
         }
 
-        return _albums!;
+        return _albums;
     }
 }

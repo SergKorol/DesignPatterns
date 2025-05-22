@@ -4,18 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessPatterns.UnitOfWork.Repositories;
 
-public class AlbumRepository(MusicDbContext context)  : EfRepository<Album>(context)
+public class AlbumRepository(MusicDbContext context)  : Repository<Album>(context)
 {
     public override async Task<IEnumerable<Album>> GetAllAsync()
     {
-        // return await context.Albums.Include(x => x.Artist).ToListAsync();
-        return await context.Albums.ToListAsync();
+        return await context.Albums.Include(x => x.Artist).ToListAsync();
     }
     
     public override async Task<Album?> GetByIdAsync(int id)
     {
-        // return await context.Albums.Include(x => x.Artist).FirstOrDefaultAsync(x => x.AlbumId == id);
-        return await context.Albums.FirstOrDefaultAsync(x => x.AlbumId == id);
+        return await context.Albums.Include(x => x.Artist).FirstOrDefaultAsync(x => x.AlbumId == id);
     }
 
     public override async Task AddAsync(Album album)

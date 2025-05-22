@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessPatterns.LazyLoadingProxyNaive.Repositories;
 
-public class AlbumRepository(MusicDbContext context)  : EfRepository<Album>(context)
+public class AlbumRepository(MusicDbContext context) : Repository<Album>(context)
 {
     public override async Task<IEnumerable<Album>> GetAllAsync()
     {
         return await context.Albums.ToListAsync();
     }
-    
+
     public override async Task<Album?> GetByIdAsync(int id)
     {
         return await context.Albums.FirstOrDefaultAsync(x => x.AlbumId == id);

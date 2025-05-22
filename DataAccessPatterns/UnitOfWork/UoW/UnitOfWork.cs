@@ -8,7 +8,7 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly MusicDbContext _context;
     public IRepository<Artist> ArtistRepository { get; }
-    
+
     public IRepository<Album> AlbumRepository { get; }
 
     public UnitOfWork(MusicDbContext context)

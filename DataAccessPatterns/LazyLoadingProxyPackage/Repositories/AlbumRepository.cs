@@ -1,11 +1,10 @@
-
 using DataAccessPatterns.LazyLoadingProxyPackage.Context;
 using DataAccessPatterns.LazyLoadingProxyPackage.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessPatterns.LazyLoadingProxyPackage.Repositories;
 
-public class AlbumRepository(MusicDbContext context)  : EfRepository<Album>(context)
+public class AlbumRepository(MusicDbContext context)  : Repository<Album>(context)
 {
     public override async Task<IEnumerable<Album>> GetAllAsync()
     {

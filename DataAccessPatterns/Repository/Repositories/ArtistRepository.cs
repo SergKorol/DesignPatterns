@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessPatterns.Repository.Repositories;
 
-public class ArtistRepository(MusicDbContext context) : EfRepository<Artist>(context)
+public class ArtistRepository(MusicDbContext context) : Repository<Artist>(context)
 {
     public override async Task<IEnumerable<Artist>> GetAllAsync()
     {
         return await context.Artists.Include(x => x.Albums).ToListAsync();
     }
-    
+
     public override async Task<Artist?> GetByIdAsync(int id)
     {
         return await context.Artists.Include(x => x.Albums).FirstOrDefaultAsync(x => x.ArtistId == id);

@@ -7,6 +7,6 @@ public interface IUnitOfWork : IAsyncDisposable
 {
     public IRepository<Artist> ArtistRepository { get; }
     public IRepository<Album> AlbumRepository { get; }
-    
+
     Task<int> SaveChangesAsync();
 }

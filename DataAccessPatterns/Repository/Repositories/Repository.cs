@@ -1,15 +1,14 @@
-
-using DataAccessPatterns.LazyLoadingProxyPackage.Context;
+using DataAccessPatterns.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccessPatterns.LazyLoadingProxyPackage.Repositories;
+namespace DataAccessPatterns.Repository.Repositories;
 
-public abstract class EfRepository<T> : IRepository<T> where T : class
+public abstract class Repository<T> : IRepository<T> where T : class
 {
     private readonly MusicDbContext _context;
     private readonly DbSet<T> _dbSet;
 
-    public EfRepository(MusicDbContext context)
+    protected Repository(MusicDbContext context)
     {
         _context = context;
         _dbSet = _context.Set<T>();

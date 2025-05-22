@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessPatterns.Repository.Repositories;
 
-public class AlbumRepository(MusicDbContext context)  : EfRepository<Album>(context)
+public class AlbumRepository(MusicDbContext context)  : Repository<Album>(context)
 {
     public override async Task<IEnumerable<Album>> GetAllAsync()
     {

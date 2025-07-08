@@ -2,7 +2,7 @@ namespace MediatorPattern.Naive;
 
 public class ChatRoom
 {
-    private readonly List<User> _users = new();
+    private readonly List<User> _users = [];
 
     public void RegisterUser(User user)
     {

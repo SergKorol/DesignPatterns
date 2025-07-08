@@ -2,7 +2,7 @@ namespace MediatorPattern.Mediator;
 
 public class ChatRoom : IChatMediator
 {
-    private readonly List<User> _users = new List<User>();
+    private readonly List<User> _users = new();
 
     public void AddUser(User user)
     {
@@ -13,7 +13,6 @@ public class ChatRoom : IChatMediator
     {
         foreach (var user in _users)
         {
-            // Don't send message to the sender themselves
             if (user != sender)
             {
                 user.ReceiveMessage(message, sender);

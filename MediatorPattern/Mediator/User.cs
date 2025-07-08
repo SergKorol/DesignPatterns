@@ -3,7 +3,7 @@ namespace MediatorPattern.Mediator;
 public class User
 {
     private readonly IChatMediator _mediator;
-    public string Name { get; }
+    private string Name { get; }
 
     public User(string name, IChatMediator mediator)
     {

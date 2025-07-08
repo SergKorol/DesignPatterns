@@ -2,7 +2,7 @@ namespace MediatorPattern.Naive;
 
 public class User
 {
-    public string Name { get; }
+    private string Name { get; }
     private readonly ChatRoom _chatRoom;
 
     public User(string name, ChatRoom chatRoom)

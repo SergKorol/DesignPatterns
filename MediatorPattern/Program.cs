@@ -13,12 +13,6 @@ public class Program
     public static async Task Main()
     {
         BenchmarkRunner.Run<Program>(new BenchmarkConfig());
-        
-        // MediatorApproach();
-
-        // await MediatrApproach();
-
-        // NaiveApproach();
     }
 
     [Benchmark]

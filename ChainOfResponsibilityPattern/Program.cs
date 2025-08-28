@@ -13,8 +13,6 @@ public class Program
     public static void Main()
     {
         BenchmarkRunner.Run<Program>(new BenchmarkConfig());
-        // NaiveApproach();
-        // CoRApproach();
     }
 
     [Benchmark]

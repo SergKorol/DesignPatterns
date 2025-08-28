@@ -1,13 +1,11 @@
 using ChainOfResponsibilityPattern.CoR.Context;
-using ChainOfResponsibilityPattern.CoR.Logger;
 using ChainOfResponsibilityPattern.CoR.Result;
 
 namespace ChainOfResponsibilityPattern.CoR.Handlers.Base;
 
-public abstract class PurchaseHandler(ILogger logger)
+public abstract class PurchaseHandler
 {
     private PurchaseHandler? _nextHandler;
-    protected readonly ILogger Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
     public PurchaseHandler SetNext(PurchaseHandler handler)
     {
@@ -31,7 +29,6 @@ public abstract class PurchaseHandler(ILogger logger)
         }
         catch (Exception ex)
         {
-            Logger.LogError($"Error in {GetType().Name}: {ex.Message}");
             context.Result = PurchaseResult.InvalidInput;
             context.ErrorMessage = ex.Message;
             context.IsProcessed = true;

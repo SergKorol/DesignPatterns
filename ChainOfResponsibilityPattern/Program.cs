@@ -2,7 +2,6 @@
 using BenchmarkDotNet.Running;
 using ChainOfResponsibilityPattern.CoR;
 using ChainOfResponsibilityPattern.Naive;
-using ChainOfResponsibilityPattern.Naive.Logger;
 using ChainOfResponsibilityPattern.Naive.Models;
 using ChainOfResponsibilityPattern.Naive.Services;
 using Settings;
@@ -21,8 +20,7 @@ public class Program
     [Benchmark]
     public void CoRApproach()
     {
-        var logger = new CoR.Logger.ConsoleLogger();
-        var orderService = new OrderProcessingService(logger);
+        var orderService = new OrderProcessingService();
         
         var customer = new CoR.Models.Customer(1, "John Doe", 1000m);
         var product = new CoR.Models.Product(1, "Gaming Laptop", 899.99m, 5);
@@ -59,12 +57,11 @@ public class Program
     [Benchmark]
     public void NaiveApproach()
     {
-        var logger = new ConsoleLogger();
         var inventoryService = new InventoryService();
         var paymentService = new PaymentService();
-        var shippingService = new ShippingService(logger);
+        var shippingService = new ShippingService();
         
-        var orderService = new Order(logger, inventoryService, paymentService, shippingService);
+        var orderService = new Order(inventoryService, paymentService, shippingService);
         
         var customer = new Customer(1, "John Doe", 1000m);
         var product = new Product(1, "Gaming Laptop", 899.99m, 5);

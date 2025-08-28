@@ -1,19 +1,25 @@
-using ChainOfResponsibilityPattern.Naive.Logger;
 using ChainOfResponsibilityPattern.Naive.Models;
 
 namespace ChainOfResponsibilityPattern.Naive.Services;
 
 public interface IShippingService
 {
-    void ShipProduct(Customer customer, Product product);
+    bool ShipProduct(Customer customer, Product product);
 }
 
-public class ShippingService(ILogger logger) : IShippingService
+public class ShippingService() : IShippingService
 {
-    private readonly ILogger _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-    public void ShipProduct(Customer customer, Product product)
+    public bool ShipProduct(Customer customer, Product product)
     {
-        _logger.LogInfo($"Product '{product.Name}' shipped to customer '{customer.Name}'");
+        try
+        {
+            Console.WriteLine($"Product '{product.Id}' shipped to customer '{customer.Id}'");
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 }

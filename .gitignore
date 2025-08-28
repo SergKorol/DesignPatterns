@@ -1,0 +1,10 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Others
+.DS_Store
+
+# JetBrains Rider
+.idea/
+DesignPatterns.sln.DotSettings.user

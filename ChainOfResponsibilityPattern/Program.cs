@@ -19,10 +19,10 @@ public class Program
     public void CoRApproach()
     {
         var orderService = new OrderProcessingService();
-        
+
         var customer = new CoR.Models.Customer(1, "John Doe", 1000m);
         var product = new CoR.Models.Product(1, "Gaming Laptop", 899.99m, 5);
-        
+
         Console.WriteLine("=== Successful Purchase ===");
         var result1 = orderService.ProcessOrder(customer, product);
         PrintResult(result1.Result.ToString(),
@@ -31,7 +31,7 @@ public class Program
             result1.RemainingStock,
             result1.IsSuccessful,
             result1.ProcessedAt);
-        
+
         Console.WriteLine("\n=== Insufficient Funds ===");
         var expensiveProduct = new CoR.Models.Product(2, "Luxury Car", 50000m, 2);
         var result2 = orderService.ProcessOrder(customer, expensiveProduct);
@@ -41,7 +41,7 @@ public class Program
             result2.RemainingStock,
             result2.IsSuccessful,
             result2.ProcessedAt);
-        
+
         Console.WriteLine("\n=== Out of Stock ===");
         var result3 = orderService.ProcessOrder(customer, product, 10);
         PrintResult(result3.Result.ToString(),
@@ -58,33 +58,33 @@ public class Program
         var inventoryService = new InventoryService();
         var paymentService = new PaymentService();
         var shippingService = new ShippingService();
-        
+
         var orderService = new Order(inventoryService, paymentService, shippingService);
-        
+
         var customer = new Customer(1, "John Doe", 1000m);
         var product = new Product(1, "Gaming Laptop", 899.99m, 5);
-        
+
         Console.WriteLine("=== Successful Purchase ===");
         var result1 = orderService.Purchase(customer, product);
-        
+
         PrintResult(result1.Result.ToString(),
             result1.Message,
             result1.RemainingBalance,
             result1.RemainingStock,
             result1.IsSuccessful,
             result1.ProcessedAt);
-        
+
         Console.WriteLine("\n=== Insufficient Funds ===");
         var expensiveProduct = new Product(2, "Luxury Car", 50000m, 2);
         var result2 = orderService.Purchase(customer, expensiveProduct);
-        
+
         PrintResult(result2.Result.ToString(),
             result2.Message,
             result2.RemainingBalance,
             result2.RemainingStock,
             result2.IsSuccessful,
             result2.ProcessedAt);
-        
+
         Console.WriteLine("\n=== Out of Stock ===");
         var result3 = orderService.Purchase(customer, product, 10);
         PrintResult(result3.Result.ToString(),

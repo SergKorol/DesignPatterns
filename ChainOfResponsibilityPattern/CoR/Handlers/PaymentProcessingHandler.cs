@@ -8,7 +8,6 @@ public class PaymentProcessingHandler : PurchaseHandler
 {
     protected override void ProcessRequest(PurchaseContext context)
     {
-
         if (context.Customer != null && context.Customer.Balance >= context.TotalPrice)
         {
             context.Customer.Balance -= context.TotalPrice;

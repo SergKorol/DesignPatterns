@@ -44,8 +44,8 @@ public class OrderProcessingService
         var response = new PurchaseResponse
         {
             Result = processedContext.Result,
-            Message = processedContext.Result == PurchaseResult.Success 
-                ? "Purchase completed successfully!" 
+            Message = processedContext.Result == PurchaseResult.Success
+                ? "Purchase completed successfully!"
                 : processedContext.ErrorMessage,
             RemainingBalance = customer.Balance,
             RemainingStock = product.Stock,

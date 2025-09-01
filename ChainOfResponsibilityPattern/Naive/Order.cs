@@ -5,31 +5,26 @@ using ChainOfResponsibilityPattern.Naive.Services;
 
 namespace ChainOfResponsibilityPattern.Naive;
 
-public class Order
+public class Order(
+    IInventoryService inventoryService,
+    IPaymentService paymentService,
+    IShippingService shippingService)
 {
-    private readonly IInventoryService _inventoryService;
-    private readonly IPaymentService _paymentService;
-    private readonly IShippingService _shippingService;
-
-    public Order(IInventoryService inventoryService, 
-        IPaymentService paymentService, IShippingService shippingService)
-    {
-        _inventoryService = inventoryService ?? throw new ArgumentNullException(nameof(inventoryService));
-        _paymentService = paymentService ?? throw new ArgumentNullException(nameof(paymentService));
-        _shippingService = shippingService ?? throw new ArgumentNullException(nameof(shippingService));
-    }
+    private readonly IInventoryService _inventoryService = inventoryService ?? throw new ArgumentNullException(nameof(inventoryService));
+    private readonly IPaymentService _paymentService = paymentService ?? throw new ArgumentNullException(nameof(paymentService));
+    private readonly IShippingService _shippingService = shippingService ?? throw new ArgumentNullException(nameof(shippingService));
 
     public PurchaseResponse Purchase(Customer? customer, Product? product, int quantity = 1)
     {
         if (customer == null)
             return CreateErrorResponse(PurchaseResult.InvalidInput, "Customer cannot be null", 0, 0);
-        
+
         if (product == null)
             return CreateErrorResponse(PurchaseResult.InvalidInput, "Product cannot be null", 0, 0);
-        
+
         if (quantity <= 0)
-            return CreateErrorResponse(PurchaseResult.InvalidInput, "Quantity must be greater than zero", 
-                                     customer.Balance, product.Stock);
+            return CreateErrorResponse(PurchaseResult.InvalidInput, "Quantity must be greater than zero",
+                customer.Balance, product.Stock);
 
 
         var totalPrice = product.Price * quantity;
@@ -42,7 +37,8 @@ public class Order
 
         if (customer.Balance < totalPrice)
         {
-            var message = $"Purchase failed: Insufficient funds. Required: {totalPrice:C}, Available: {customer.Balance:C}";
+            var message =
+                $"Purchase failed: Insufficient funds. Required: {totalPrice:C}, Available: {customer.Balance:C}";
             return CreateErrorResponse(PurchaseResult.InsufficientFunds, message, customer.Balance, product.Stock);
         }
 
@@ -70,8 +66,9 @@ public class Order
                 return CreateErrorResponse(PurchaseResult.ShippingFailed, message, customer.Balance, product.Stock);
             }
 
-            var successMessage = $"Purchase completed successfully! Customer: {customer.Name}, Product: {product.Name}, Quantity: {quantity}, Total: {totalPrice:C}";
-            
+            var successMessage =
+                $"Purchase completed successfully! Customer: {customer.Name}, Product: {product.Name}, Quantity: {quantity}, Total: {totalPrice:C}";
+
             return new PurchaseResponse
             {
                 Result = PurchaseResult.Success,
@@ -85,13 +82,14 @@ public class Order
         {
             _paymentService.RefundPayment(customer, totalPrice);
             _inventoryService.ReleaseProduct(product, quantity);
-            
+
             var errorMessage = $"Purchase failed due to unexpected error: {ex.Message}";
             return CreateErrorResponse(PurchaseResult.InvalidInput, errorMessage, customer.Balance, product.Stock);
         }
     }
 
-    private static PurchaseResponse CreateErrorResponse(PurchaseResult result, string message, decimal balance, int stock)
+    private static PurchaseResponse CreateErrorResponse(PurchaseResult result, string message, decimal balance,
+        int stock)
     {
         return new PurchaseResponse
         {

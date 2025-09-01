@@ -10,7 +10,8 @@ public class BalanceValidationHandler : PurchaseHandler
     {
         if (context.Customer == null || context.Customer.Balance >= context.TotalPrice) return;
         context.Result = PurchaseResult.InsufficientFunds;
-        context.ErrorMessage = $"Insufficient funds. Required: {context.TotalPrice:C}, Available: {context.Customer.Balance:C}";
+        context.ErrorMessage =
+            $"Insufficient funds. Required: {context.TotalPrice:C}, Available: {context.Customer.Balance:C}";
         context.IsProcessed = true;
     }
 }

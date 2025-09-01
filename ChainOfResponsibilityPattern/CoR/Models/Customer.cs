@@ -1,15 +1,8 @@
 namespace ChainOfResponsibilityPattern.CoR.Models;
 
-public class Customer
+public class Customer(int id, string name, decimal balance)
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public decimal Balance { get; set; }
-
-    public Customer(int id, string name, decimal balance)
-    {
-        Id = id;
-        Name = name ?? throw new ArgumentNullException(nameof(name));
-        Balance = balance >= 0 ? balance : throw new ArgumentException("Balance cannot be negative", nameof(balance));
-    }
+    public int Id { get; set; } = id;
+    public string Name { get; set; } = name ?? throw new ArgumentNullException(nameof(name));
+    public decimal Balance { get; set; } = balance >= 0 ? balance : throw new ArgumentException("Balance cannot be negative", nameof(balance));
 }

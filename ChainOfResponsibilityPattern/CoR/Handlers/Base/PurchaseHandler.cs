@@ -21,7 +21,7 @@ public abstract class PurchaseHandler
         try
         {
             ProcessRequest(context);
-            
+
             if (!context.IsProcessed && _nextHandler != null)
             {
                 return _nextHandler.Handle(context);
@@ -32,7 +32,7 @@ public abstract class PurchaseHandler
             context.Result = PurchaseResult.InvalidInput;
             context.ErrorMessage = ex.Message;
             context.IsProcessed = true;
-            
+
             Rollback(context);
         }
 
@@ -40,6 +40,8 @@ public abstract class PurchaseHandler
     }
 
     protected abstract void ProcessRequest(PurchaseContext context);
-    
-    protected virtual void Rollback(PurchaseContext context) { }
+
+    protected virtual void Rollback(PurchaseContext context)
+    {
+    }
 }

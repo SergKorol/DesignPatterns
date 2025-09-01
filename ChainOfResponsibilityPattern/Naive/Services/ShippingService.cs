@@ -9,7 +9,6 @@ public interface IShippingService
 
 public class ShippingService() : IShippingService
 {
-
     public bool ShipProduct(Customer customer, Product product)
     {
         try
@@ -17,7 +16,7 @@ public class ShippingService() : IShippingService
             Console.WriteLine($"Product '{product.Id}' shipped to customer '{customer.Id}'");
             return true;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return false;
         }

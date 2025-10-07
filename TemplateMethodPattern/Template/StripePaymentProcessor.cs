@@ -14,6 +14,14 @@ public class StripePaymentProcessor : PaymentProcessor
         return Task.CompletedTask;
     }
     
+    //extended
+    protected override Task AfterPaymentExecutedAsync(decimal amount)
+    {
+        var cashback = Math.Round(amount * 0.05m, 2);
+        Console.WriteLine($"🎁 Cashback is credited {cashback:C} to your Stripe-account!");
+        return Task.CompletedTask;
+    }
+    
     protected override Task ExecutePaymentAsync(decimal amount)
     {
         Console.WriteLine($"💰 Executing Stripe payment to {amount:C}...");

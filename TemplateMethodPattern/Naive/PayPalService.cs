@@ -16,19 +16,19 @@ public class PayPalService
         Console.WriteLine("✅ Checking PayPal-account...");
         return Task.CompletedTask;
     }
-    
+
     private Task AuthorizePaymentAsync(decimal amount)
     {
         Console.WriteLine($"🔐 Authorizing PayPal to {amount:C}...");
         return Task.CompletedTask;
     }
-    
+
     private Task ExecutePaymentAsync(decimal amount)
     {
         Console.WriteLine($"💰 Executing PayPal payment to {amount:C}...");
         return Task.CompletedTask;
     }
-    
+
     private Task SendReceiptAsync()
     {
         Console.WriteLine("📧 Sending receipt via email...");

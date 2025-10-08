@@ -16,19 +16,19 @@ public class StripeService
         Console.WriteLine("✅ Checking Stripe-account...");
         return Task.CompletedTask;
     }
-    
+
     private Task AuthorizePaymentAsync(decimal amount)
     {
         Console.WriteLine($"🔐 Authorizing Stripe to {amount:C}...");
         return Task.CompletedTask;
     }
-    
+
     private Task ExecutePaymentAsync(decimal amount)
     {
         Console.WriteLine($"💰 Executing Stripe payment to {amount:C}...");
         return Task.CompletedTask;
     }
-    
+
     private Task SendReceiptAsync()
     {
         Console.WriteLine("📧 Sending receipt via email...");

@@ -8,6 +8,6 @@ public class FileElement(string name, long size) : FileSystemElement(name)
 
     public override void PrintReport(int depth = 0)
     {
-        Console.WriteLine($"{new string(' ', depth * 2)}📄 {Name} ({Size} KB)");
+        Console.WriteLine($"{new string(' ', depth * 2)}📄 {Name} ({Size / 1024.0:F2} KB)");
     }
 }

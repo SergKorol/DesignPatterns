@@ -21,8 +21,6 @@ public class DirectoryElement(string name) : FileSystemElement(name)
     {
         Console.WriteLine($"{new string(' ', depth * 2)}📁 {Name}");
         foreach (var child in Children)
-        {
             child.PrintReport(depth + 1);
-        }
     }
 }

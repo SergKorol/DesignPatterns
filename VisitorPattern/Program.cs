@@ -15,42 +15,24 @@ public class Program
     [Benchmark]
     public void OrdinaryApproach()
     {
-        var root = new Ordinary.DirectoryElement("Root");
-        var docs = new Ordinary.DirectoryElement("Documents");
-        var pics = new Ordinary.DirectoryElement("Pictures");
+        string targetPath = Path.Combine(AppContext.BaseDirectory);
+        Console.WriteLine($"Building file tree from: {targetPath}\n");
 
-        docs.Add(new Ordinary.FileElement("Resume.pdf", 250));
-        docs.Add(new Ordinary.FileElement("Report.docx", 120));
-
-        pics.Add(new Ordinary.FileElement("Photo1.jpg", 2048));
-        pics.Add(new Ordinary.FileElement("Photo2.png", 1024));
-
-        root.Add(docs);
-        root.Add(pics);
-        root.Add(new Ordinary.FileElement("todo.txt", 10));
+        var root = BuildDirectoryTreeForOrdinary(targetPath);
 
         Console.WriteLine("=== File tree ===");
         root.PrintReport();
 
-        Console.WriteLine($"\nTotal size: {root.GetSize()} KB");
+        Console.WriteLine($"\nTotal size: {root.GetSize() / 1024.0:F2} KB");
     }
     
     [Benchmark]
     public void VisitorApproach()
     {
-        var root = new Visitor.DirectoryElement("Root");
-        var docs = new Visitor.DirectoryElement("Documents");
-        var pics = new Visitor.DirectoryElement("Pictures");
+        string targetPath = Path.Combine(AppContext.BaseDirectory);
+        Console.WriteLine($"Building file tree from: {targetPath}\n");
 
-        docs.Add(new Visitor.FileElement("Resume.pdf", 250));
-        docs.Add(new Visitor.FileElement("Report.docx", 120));
-
-        pics.Add(new Visitor.FileElement("Photo1.jpg", 2048));
-        pics.Add(new Visitor.FileElement("Photo2.png", 1024));
-
-        root.Add(docs);
-        root.Add(pics);
-        root.Add(new Visitor.FileElement("todo.txt", 10));
+        var root = BuildDirectoryTreeForVisitor(targetPath);
 
         var reportVisitor = new Visitor.ReportVisitor();
         Console.WriteLine("=== File tree ===");
@@ -58,6 +40,42 @@ public class Program
 
         var sizeVisitor = new Visitor.SizeCalculatorVisitor();
         root.Accept(sizeVisitor);
-        Console.WriteLine($"\nTotal size: {sizeVisitor.TotalSize} KB");
+        Console.WriteLine($"\nTotal size: {sizeVisitor.TotalSize / 1024.0:F2} KB");
+    }
+    
+    private static Ordinary.DirectoryElement BuildDirectoryTreeForOrdinary(string path)
+    {
+        var directory = new Ordinary.DirectoryElement(Path.GetFileName(path));
+
+        foreach (var file in Directory.GetFiles(path))
+        {
+            var fileInfo = new FileInfo(file);
+            directory.Add(new Ordinary.FileElement(fileInfo.Name, fileInfo.Length));
+        }
+
+        foreach (var dir in Directory.GetDirectories(path))
+        {
+            directory.Add(BuildDirectoryTreeForOrdinary(dir));
+        }
+
+        return directory;
+    }
+    
+    private static Visitor.DirectoryElement BuildDirectoryTreeForVisitor(string path)
+    {
+        var directory = new Visitor.DirectoryElement(Path.GetFileName(path));
+
+        foreach (var file in Directory.GetFiles(path))
+        {
+            var info = new FileInfo(file);
+            directory.Add(new Visitor.FileElement(info.Name, info.Length));
+        }
+
+        foreach (var dir in Directory.GetDirectories(path))
+        {
+            directory.Add(BuildDirectoryTreeForVisitor(dir));
+        }
+
+        return directory;
     }
 }

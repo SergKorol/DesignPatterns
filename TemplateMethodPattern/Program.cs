@@ -10,8 +10,6 @@ public class Program
 {
     public static async Task Main()
     {
-        // await NaivePaymentMethod();
-        // await TemplatePaymentMethod();
         BenchmarkRunner.Run<Program>(new BenchmarkConfig());
     }
 

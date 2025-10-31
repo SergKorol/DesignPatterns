@@ -11,13 +11,11 @@ public class ReportVisitor : IFileSystemVisitor
 
     public void Visit(DirectoryElement directory)
     {
-        Console.WriteLine($"{new string(' ', _depth * 2)}📁 {directory.Name}");
+        Console.WriteLine($"{new string(' ', _depth * 2)}📁 {directory.Name} ({directory.Children.Count} items)");
+
         _depth++;
         foreach (var child in directory.Children)
-        {
             child.Accept(this);
-        }
-
         _depth--;
     }
 }

@@ -19,8 +19,10 @@ public class DirectoryElement(string name) : FileSystemElement(name)
 
     public override void PrintReport(int depth = 0)
     {
-        Console.WriteLine($"{new string(' ', depth * 2)}📁 {Name}");
+        Console.WriteLine($"{new string(' ', depth * 2)}📁 {Name} ({CountElementsInCurrentDirectory()} items)");
         foreach (var child in Children)
             child.PrintReport(depth + 1);
     }
+
+    private int CountElementsInCurrentDirectory() => Children.Count;
 }

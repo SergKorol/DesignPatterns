@@ -37,12 +37,15 @@ public class Program
         var reportVisitor = new Visitor.ReportVisitor();
         Console.WriteLine("=== File tree ===");
         root.Accept(reportVisitor);
+        
+        var count = new Visitor.CountingVisitor();
+        root.Accept(count);
 
         var sizeVisitor = new Visitor.SizeCalculatorVisitor();
         root.Accept(sizeVisitor);
         Console.WriteLine($"\nTotal size: {sizeVisitor.TotalSize / 1024.0:F2} KB");
     }
-    
+
     private static Ordinary.DirectoryElement BuildDirectoryTreeForOrdinary(string path)
     {
         var directory = new Ordinary.DirectoryElement(Path.GetFileName(path));
